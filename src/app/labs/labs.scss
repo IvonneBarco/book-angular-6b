@@ -1,0 +1,104 @@
+h1 {
+  color: #ffa500;
+}
+
+
+p {
+  font-weight: 500;
+}
+
+/* Contenedor principal */
+.user-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Card individual */
+.user-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Avatar con iniciales */
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #2563eb;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* Información del usuario */
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  overflow: hidden;
+}
+
+.user-info h3 {
+  font-size: 1.05rem;
+  color: #1f2937;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-info .email {
+  font-size: 0.85rem;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.5rem;
+}
+
+/* Etiquetas (Rol y Estado) */
+.tags {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.badge.role {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.badge.status.active {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.badge.status.inactive {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
