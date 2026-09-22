@@ -43,10 +43,10 @@
 <h2> Estructuras de control </h2>
 <div class="user-container">
   <!-- Card 1 -->
-  <div class="user-card" *ngFor="let usuario of usuarios()">
+  <div class="user-card" *ngFor="let usuario of usuarios(); index as i">
     <div class="avatar">⚙️</div>
     <div class="user-info">
-      <h3>{{ usuario.nombre }}</h3>
+      <h3> No.{{ i + 1 }} - {{ usuario.nombre }}</h3>
       <p class="email">{{ usuario.email }}</p>
       <div class="tags">
         <span class="badge role">{{ usuario.rol }}</span>
