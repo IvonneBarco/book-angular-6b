@@ -58,7 +58,7 @@
         <label for="priority">Prioridad</label>
         <select id="priority" name="priority" (change)="recibirPrioridad($event)">
           <option value="low">Baja</option>
-          <option value="medium" selected>Media</option>
+          <option value="medium">Media</option>
           <option value="high">Alta</option>
         </select>
       </div>
@@ -85,7 +85,7 @@
         <button class="filter" type="button">Pendientes</button>
         <button class="filter" type="button">Completadas</button>
       </div>
-        <p class="text-empty" *ngIf="tasks().length ==0">no hay tareas.</p>
+      <p class="text-empty" *ngIf="tasks().length ==0">no hay tareas.</p>
 
     </div>
 
@@ -95,9 +95,18 @@
       ========================== -->
     <div class="task-list">
 
-      <article class="task-card" *ngFor="let task of tasks(); index as position" id="task-{{position}}">
+      <article class="task-card"
+      *ngFor="let task of tasks(); index as position"
+      id="task-{{position}}"
+      [ngClass]="task.completed ? 'completed' : ''"
+      >
         <div class="task-check">
-          <input type="checkbox" id="task-{{position}}">
+          <input
+            type="checkbox"
+            id="task-{{position}}"
+            [checked]="task.completed"
+            (change)="onChangeCompletedTask($event, task)"
+          >
         </div>
 
         <div class="task-content">
@@ -105,10 +114,8 @@
             <label for="task-{{position}}" class="task-title">
               {{ task.title }}
             </label>
-            <span
-              class="priority"
-              [ngClass]="setClassPriority(task?.priority)">
-                {{task.priority === 'low' ? 'Baja' :
+            <span class="priority" [ngClass]="setClassPriority(task?.priority)">
+              {{task.priority === 'low' ? 'Baja' :
               task.priority === 'medium' ? 'Media' : 'Alta'}}
             </span>
           </div>
@@ -182,7 +189,7 @@
           <button class="icon-btn" type="button">Editar</button>
           <button class="icon-btn danger" type="button">Eliminar</button>
         </div>
-      </article>
+      </article>-->
 
       <article class="task-card completed">
         <div class="task-check">
@@ -208,7 +215,7 @@
           <button class="icon-btn" type="button">Editar</button>
           <button class="icon-btn danger" type="button">Eliminar</button>
         </div>
-      </article> -->
+      </article>
 
     </div>
   </section>

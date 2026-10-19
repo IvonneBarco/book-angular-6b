@@ -10,30 +10,30 @@ import { Task } from '../models/task.model';
 })
 export class Taskflow {
   public tasks = signal<Task[]>([
-    // {
-    //   id: Date.now(),
-    //   title: 'Tarea de ejemplo 1',
-    //   description: 'Esta es una tarea de ejemplo para demostrar el flujo de trabajo.',
-    //   priority: 'low',
-    //   completed: false,
-    //   dateLine: '',
-    // },
-    // {
-    //   id: Date.now(),
-    //   title: 'Tarea de ejemplo 2',
-    //   description: 'Esta es una tarea de ejemplo para demostrar el flujo de trabajo.',
-    //   priority: 'medium',
-    //   completed: false,
-    //   dateLine: '',
-    // },
-    // {
-    //   id: Date.now(),
-    //   title: 'Tarea de ejemplo 3',
-    //   description: 'Esta es una tarea de ejemplo para demostrar el flujo de trabajo.',
-    //   priority: 'high',
-    //   completed: true,
-    //   dateLine: '',
-    // },
+    {
+      id: Date.now(),
+      title: 'Tarea de ejemplo 1',
+      description: 'Esta es una tarea de ejemplo para demostrar el flujo de trabajo.',
+      priority: 'low',
+      completed: false,
+      dateLine: '',
+    },
+    {
+      id: Date.now(),
+      title: 'Tarea de ejemplo 2',
+      description: 'Esta es una tarea de ejemplo para demostrar el flujo de trabajo.',
+      priority: 'medium',
+      completed: false,
+      dateLine: '',
+    },
+    {
+      id: Date.now(),
+      title: 'Tarea de ejemplo 3',
+      description: 'Esta es una tarea de ejemplo para demostrar el flujo de trabajo.',
+      priority: 'high',
+      completed: true,
+      dateLine: '',
+    },
   ]);
 
   public taskTemp: Task = {
@@ -58,7 +58,6 @@ export class Taskflow {
   }
 
   onChangeTask() {
-
     console.log('.:: tastk Temp', this.taskTemp);
     this.addTask(this.taskTemp);
   }
@@ -105,5 +104,15 @@ export class Taskflow {
     const input = event.target as HTMLInputElement;
     const newTitle = input.value;
     this.taskTemp.title = newTitle;
+  }
+
+  onChangeCompletedTask(event: Event, task: Task) {
+    const checkbox = event.target as HTMLInputElement;
+    const isChecked = checkbox.checked;
+
+    task.completed = isChecked;
+
+    console.log('Tarea actualizada:', task.title, 'Completada:', task.completed);
+    localStorage.setItem('tasks', JSON.stringify(this.tasks()));
   }
 }
