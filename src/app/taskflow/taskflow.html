@@ -47,23 +47,37 @@
         Por ahora este formulario es estático.
         Más adelante Angular / React controlarán sus valores y eventos.
       -->
-    <form class="task-form">
+    <form class="task-form" [formGroup]="taskForm">
       <div class="form-group form-group-main">
         <label for="taskTitle">Título</label>
-        <input id="taskTitle" name="taskTitle" type="text" (change)="onChangeTitleTask($event)"
+        <input
+          id="taskTitle"
+          name="taskTitle"
+          type="text"
+          /* (change)="onChangeTitleTask($event)" */
+          formControlName="title"
           placeholder="Ej. Preparar presentación">
       </div>
 
       <div class="form-group">
         <label for="priority">Prioridad</label>
-        <select id="priority" name="priority" (change)="recibirPrioridad($event)">
+        <select
+          id="priority" name="priority"
+          /* (change)="recibirPrioridad($event)" */
+          formControlName="priority"
+          >
           <option value="low">Baja</option>
           <option value="medium">Media</option>
           <option value="high">Alta</option>
         </select>
       </div>
 
-      <button class="btn btn-primary" type="button" (click)="onChangeTask()">
+      <button
+        class="btn btn-primary"
+        type="button"
+        /* (click)="onChangeTask()" */
+        (click)="submitFormTask()"
+      >
         + Agregar tarea
       </button>
     </form>

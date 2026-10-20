@@ -1,7 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 @Component({
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   selector: 'app-labs',
   styleUrl: './labs.scss',
   templateUrl: './labs.html',
@@ -46,6 +47,19 @@ export class Labs {
     },
   ]);
 
+  nameCtrl = new FormControl('', {
+    nonNullable: true,
+    validators: [Validators.required, Validators.minLength(3)],
+  });
+
+  colorCtrl = new FormControl();
+
+  constructor() {
+    this.colorCtrl.valueChanges.subscribe((value) => {
+      console.log('.:: FormControl - Color', value);
+    })
+  }
+
   saludo() {
     alert('Hola ' + this.name);
     console.log('.:: Ejecutando Event Binding');
@@ -77,5 +91,10 @@ export class Labs {
 
   mostrarMasInformacion() {
     this.info = !this.info;
+  }
+
+  verFomulario() {
+    console.log('.:: Formulario Reactivo', this.nameCtrl);
+    console.log('.:: ¿El input es valido?', this.nameCtrl.valid);
   }
 }

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Task } from '../models/task.model';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   selector: 'app-taskflow',
   styleUrl: './taskflow.scss',
   templateUrl: './taskflow.html',
@@ -51,6 +52,14 @@ export class Taskflow {
     medium: 'priority-medium',
     high: 'priority-high',
   };
+
+  private fb = inject(FormBuilder);
+
+  taskForm = this.fb.group({
+    title: ['', [Validators.required, Validators.minLength(3)]],
+    priority: ['', Validators.required],
+    // Agrega más campos según sea necesario
+  });
 
   constructor() {
     // inicializar el array de tareas
@@ -114,5 +123,17 @@ export class Taskflow {
 
     console.log('Tarea actualizada:', task.title, 'Completada:', task.completed);
     localStorage.setItem('tasks', JSON.stringify(this.tasks()));
+  }
+
+  submitFormTask() {
+    console.log('Formulario:', this.taskForm);
+    console.log('Valores del formulario:', this.taskForm.value);
+
+    if (this.taskForm.valid) {
+      // agregar la tarea
+      this.addTask(this.taskForm.value as Task);
+    } else {
+      alert('El formulario no es válido. Por favor, complete todos los campos requeridos.');
+    }
   }
 }
