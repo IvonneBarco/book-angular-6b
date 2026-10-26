@@ -1,1 +1,12 @@
-<p>home works!</p>
+<app-card nombre="Mateo Flores" email="mateo.flores@correo.com" rol="Administrador" grupo="Grupo 1"
+  (agregarUsuario)="desdeElPadre($event)">
+</app-card>
+
+<app-card [nombre]="usuarios.nombre" [email]="usuarios.email" [rol]="usuarios.rol" [grupo]="usuarios.grupo">
+</app-card>
+
+<div *ngFor="let u of lista; let i = index">
+  <app-card id="u-{{ i }}" [nombre]="u.nombre" [email]="u.email" [rol]="u.rol" [grupo]="u.grupo">
+  </app-card>
+</div>
+

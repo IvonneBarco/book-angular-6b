@@ -1,0 +1,15 @@
+<div class="user-container">
+  <div class="user-card">
+    <div class="avatar">⚙️</div>
+    <div class="user-info">
+      <h3> No. 1 - {{ nombre }}</h3>
+      <p class="email">{{ email }}</p>
+      <div class="tags">
+        <span class="badge role">{{ rol }}</span>
+        <span class="badge status active"> {{ estado ? 'Activo' : 'Inactivo' }}</span>
+        <span class="badge status active"> {{ grupo }}</span>
+      </div>
+    </div>
+    <button (click)="agregar()">Agregar</button>
+  </div>
+</div>
